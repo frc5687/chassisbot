@@ -1,0 +1,77 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven {
+      name = 'GradleRIO'
+      url = 'http://dev.imjac.in/maven'
+	}
+  }
+  dependencies {
+    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'			//Change this line if you wish to Update GradleRIO
+  }
+}
+
+apply plugin: 'java'
+dependencies {
+  compile files('lib/navx_frc.jar')
+}
+
+apply plugin: 'idea'
+
+apply plugin: 'GradleRIO'
+
+gradlerio.robotClass = 'org.usfirst.frc.team5687.robot.Robot'       //The class for the main Robot Class
+gradlerio.team = '5687'                                             //The FRC team number
+gradlerio.rioIP = '24.235.78.38'                                      //The IP address of the RIO
+
+def robotManifest = {
+  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+  attributes 'Robot-Class': gradlerio.robotClass
+}
+
+jar {
+  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  manifest robotManifest
+}
+
+task genJavadoc(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives genJavadoc
+}
+
+task gitInfo(dependsOn: build) {
+  description = 'Logs git branch and version to build'
+  def cmd = 'git rev-parse --abbrev-ref HEAD'
+  project.ext.branch = cmd.execute().text.trim()
+  cmd = 'git rev-parse --short HEAD'
+  project.ext.revision = cmd.execute().text.trim()
+
+  println '[branch] ' + project.branch
+  println '[commit] ' + project.revision
+}
+
+task access << {
+  description = 'Grants access permission to robot code'
+  def robot = 'Christine'
+  println 'User-agent: ' + robot + ' \nDisallow: '
+  println '\nUser-agent: * \nDisallow: /'
+}
+
+task gitLog << {
+  description = 'Logs git branch and version to log file when deploy'
+  def logFile = new File('src/main/java/org/usfirst/frc/team5687/robot/utils/Reader.java')
+
+  def cmd = 'git diff HEAD --shortstat'
+  def mod = cmd.execute().text.trim()
+  def modified = (mod != null && mod.length() != 0) ? ' *' : ''
+  def br = '\n\n'
+  def reader = 'package org.usfirst.frc.team5687.robot.utils;' + br
+  reader += '/**\n * A file reader class to read current Git information from deployed robot code\n * @author wilstenholme\n */' + br
+  reader += 'public class Reader {\n' + '    public static final String gitInfo = \"' + project.branch + ' ' + project.revision + modified + '\";\n }'
+  logFile.text = reader
+}
+deploy.dependsOn(gitLog)
