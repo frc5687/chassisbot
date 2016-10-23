@@ -34,6 +34,7 @@ public class RunIntakeManually extends Command {
      */
     protected void execute() {
         intake.setSpeed(oi.getIntakeSpeed());
+        // oi.sendButtons();
     }
 
     /*

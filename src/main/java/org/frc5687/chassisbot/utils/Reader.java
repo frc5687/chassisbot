@@ -6,5 +6,5 @@ package org.frc5687.chassisbot.utils;
  */
 
 public class Reader {
-    public static final String gitInfo = "intake/#5-manual b70b6aa *";
+    public static final String gitInfo = "oi/#4-constants 0347433 *";
  }
