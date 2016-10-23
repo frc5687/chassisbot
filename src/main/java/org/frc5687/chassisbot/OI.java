@@ -44,6 +44,10 @@ public class OI {
     public static int RESET_CAMERA = Gamepad.Buttons.A.getNumber();
 
     private JoystickButton overrideButton;
+
+    private JoystickButton intakeInButton;
+    private JoystickButton intakeOutButton;
+
     private JoystickLight capturedLight;
     private JoystickLight intakeInLight;
     private JoystickLight intakeOutLight;
@@ -65,6 +69,9 @@ public class OI {
         JoystickButton collectButton = new JoystickButton(joystick, COLLECT);
         JoystickButton bowlButton = new JoystickButton(joystick, BOWL);
         JoystickButton cancelButton = new JoystickButton(joystick, CANCEL);
+
+        intakeInButton = new JoystickButton(joystick, INTAKE_IN);
+        intakeOutButton = new JoystickButton(joystick, INTAKE_OUT);
 
         capturedLight = new JoystickLight(joystick, CAPTURE_LIGHT);
         intakeInLight = new JoystickLight(joystick, INTAKE_IN_LIGHT);
@@ -124,7 +131,9 @@ public class OI {
      */
     public double getIntakeSpeed() {
         // Joystick's y-axis is set to control intake speed
-        return Helpers.applyDeadband(joystick.getRawAxis(1), Constants.Deadbands.INTAKE_STICK);
+        return intakeInButton.get() ? Constants.Intake.CAPTURE_SPEED :
+                intakeOutButton.get() ? Constants.Intake.BOWL_SPEED :
+                        0;
     }
 
 
