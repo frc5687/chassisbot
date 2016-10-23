@@ -1,7 +1,9 @@
 package org.frc5687.chassisbot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.frc5687.chassisbot.Constants;
 import org.frc5687.chassisbot.RobotMap;
+import org.frc5687.chassisbot.commands.RunIntakeManually;
 import org.frc5687.chassisbot.utils.Helpers;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -30,7 +32,7 @@ public class Intake extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        // setDefaultCommand(new RunIntakeManually());
+        setDefaultCommand(new RunIntakeManually());
     }
 
     /**
@@ -78,6 +80,12 @@ public class Intake extends Subsystem {
      * @param speed the desired speed value
      */
     public void setSpeed(double speed) {
+        if (speed < 0) {
+            DriverStation.reportError("Intake in", false);
+        } else if (speed > 0) {
+            DriverStation.reportError("Intake out", false);
+        }
+
         oi.setIntakeInLight(speed<0);
         oi.setIntakeOutLight(speed>0);
 

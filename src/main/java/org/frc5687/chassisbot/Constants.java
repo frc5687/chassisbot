@@ -64,7 +64,7 @@ public class Constants {
         /**
          * Speed to run the intake roller to capture the boulder until detected
          */
-        public static final double CAPTURE_SPEED = 1.0;
+        public static final double CAPTURE_SPEED = -1.0;
 
         /**
          * Speed to run the intake roller to prime the boulder
@@ -89,7 +89,7 @@ public class Constants {
         /**
          * Speed to run the intake roller when bowling.
          */
-        public static final double BOWL_SPEED = -1.0;
+        public static final double BOWL_SPEED = 1.0;
     }
 
     public class IntakeLifter {
