@@ -80,11 +80,6 @@ public class OI {
 
     }
 
-    /**
-     * Gets the current direction of the drive
-     * @return the direction, 1 for forward or -1 for reverse
-     */
-
     public void rumble (float strength, long length) {
 
         rumbleStopTime = System.currentTimeMillis() + length;
