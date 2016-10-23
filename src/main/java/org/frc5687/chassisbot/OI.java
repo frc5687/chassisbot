@@ -107,7 +107,7 @@ public class OI {
      * @return the control value for the right drive motors
      */
     public double getLeftSpeed(){
-        return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
+        return transformStickToSpeed(Gamepad.Axes.LEFT_Y);
     }
 
     /**
@@ -115,7 +115,7 @@ public class OI {
      * @return the control value for the right drive motors
      */
     public double getRightSpeed(){
-        return transformStickToSpeed(Gamepad.Axes.LEFT_Y);
+        return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
     }
 
     /**

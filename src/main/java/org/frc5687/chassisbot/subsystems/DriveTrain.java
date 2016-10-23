@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc5687.chassisbot.RobotMap;
+import org.frc5687.chassisbot.commands.DriveWith2Joysticks;
 
 public class DriveTrain extends Subsystem {
     private RobotDrive drive;
@@ -35,7 +36,7 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        // setDefaultCommand(new DriveWith2Joysticks());
+        setDefaultCommand(new DriveWith2Joysticks());
     }
 
     public void resetDriveEncoders() {
