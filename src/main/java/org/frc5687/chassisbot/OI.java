@@ -15,25 +15,15 @@ public class OI {
     private Gamepad gamepad;
     private Joystick joystick;
 
-    // Drive Train Elements
-    public static final int HORNS_DIRECTION = 1;
-    public static final int INTAKE_DIRECTION = -1;
-    private static int currentDirection = INTAKE_DIRECTION; //Initial drive direction
-
-    // Drive Train Buttons
-    public static final int REVERSE = Gamepad.Buttons.BACK.getNumber();
-
-    // Hell-Effect Override Button
-    public static final int OVERRIDE = Gamepad.Buttons.START.getNumber();
-
 
     // Boulder Buttons
-    public static final int CAPTURE = 3;
-    public static final int BOWL = 2;
-    public static final int PRIME = 5;
-    public static final int UNPRIME = 6;
-    public static final int FIRE = 9; // Previous: 1, not responsive  9
-    public static final int RECOVER = 4;
+    public static final int COLLECT = 1;  // Green button
+    public static final int BOWL = 2; // Yellow
+    public static final int CANCEL = 12; // Red
+
+    public static final int INTAKE_OUT = 6; // Yellow
+    public static final int INTAKE_IN = 8; // Red
+
 
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
@@ -70,17 +60,11 @@ public class OI {
         joystick = new Joystick(1);
 
         // Gamepad Buttons
-        JoystickButton reverseButton = new JoystickButton(gamepad, REVERSE);
-        overrideButton = new JoystickButton(gamepad, OVERRIDE);
 
         // Joystick Buttons
-        JoystickButton captureButton = new JoystickButton(joystick, CAPTURE);
+        JoystickButton collectButton = new JoystickButton(joystick, COLLECT);
         JoystickButton bowlButton = new JoystickButton(joystick, BOWL);
-        JoystickButton primeButton = new JoystickButton(joystick, PRIME);
-        JoystickButton unprimeButton = new JoystickButton(joystick, UNPRIME);
-        JoystickButton fireButton = new JoystickButton(joystick, FIRE);
-        JoystickButton recoverButton = new JoystickButton(joystick, RECOVER);
-        JoystickButton lowerIntakeButton = new JoystickButton(joystick, LOWER_INTAKE_AUTO);
+        JoystickButton cancelButton = new JoystickButton(joystick, CANCEL);
 
         capturedLight = new JoystickLight(joystick, CAPTURE_LIGHT);
         intakeInLight = new JoystickLight(joystick, INTAKE_IN_LIGHT);
@@ -100,17 +84,6 @@ public class OI {
      * Gets the current direction of the drive
      * @return the direction, 1 for forward or -1 for reverse
      */
-    public int getDirection() {
-        return currentDirection;
-    }
-
-    /**
-     * Sets the current direction of the drive
-     * @param direction the desired direction of the drive
-     */
-    public void setDirection(int direction) {
-        currentDirection = direction;
-    }
 
     public void rumble (float strength, long length) {
 
@@ -139,9 +112,6 @@ public class OI {
      * @return the control value for the right drive motors
      */
     public double getLeftSpeed(){
-        if (currentDirection == INTAKE_DIRECTION) {
-            return currentDirection * transformStickToSpeed(Gamepad.Axes.LEFT_Y);
-        }
         return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
     }
 
@@ -150,9 +120,6 @@ public class OI {
      * @return the control value for the right drive motors
      */
     public double getRightSpeed(){
-        if (currentDirection == INTAKE_DIRECTION) {
-            return currentDirection * transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
-        }
         return transformStickToSpeed(Gamepad.Axes.LEFT_Y);
     }
 
