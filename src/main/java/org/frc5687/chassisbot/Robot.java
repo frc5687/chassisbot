@@ -49,6 +49,9 @@ public class Robot extends IterativeRobot {
      */
     public static Lights lights;
 
+    private CameraServer cameraServer;
+
+
     public Robot() {
 
     }
@@ -79,6 +82,9 @@ public class Robot extends IterativeRobot {
         // Commands need to be instantiated AFTER the subsystems.  Since the OI constructor instantiates several commands, we need it to be instantiated last.
         oi = new OI();
 
+        cameraServer = CameraServer.getInstance();
+        cameraServer.setQuality(50);
+        cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
     }
 
     public void disabledInit() {
