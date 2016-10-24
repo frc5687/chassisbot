@@ -1,5 +1,7 @@
 package org.frc5687.chassisbot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc5687.chassisbot.utils.Gamepad;
 import org.frc5687.chassisbot.utils.Helpers;
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,10 +21,10 @@ public class OI {
     // Boulder Buttons
     public static final int COLLECT = 1;  // Green button
     public static final int BOWL = 2; // Yellow
-    public static final int CANCEL = 12; // Red
+    public static final int CANCEL = 4; // Red
 
-    public static final int INTAKE_OUT = 6; // Yellow
-    public static final int INTAKE_IN = 8; // Red
+    public static final int INTAKE_OUT = 5; // Yellow
+    public static final int INTAKE_IN = 6; // Red
 
 
     public static final int CAPTURE_LIGHT = 2;
@@ -48,6 +50,10 @@ public class OI {
     private JoystickButton intakeInButton;
     private JoystickButton intakeOutButton;
 
+    private JoystickButton collectButton;
+    private JoystickButton bowlButton;
+    private JoystickButton cancelButton;
+
     private JoystickLight capturedLight;
     private JoystickLight intakeInLight;
     private JoystickLight intakeOutLight;
@@ -66,9 +72,9 @@ public class OI {
         // Gamepad Buttons
 
         // Joystick Buttons
-        JoystickButton collectButton = new JoystickButton(joystick, COLLECT);
-        JoystickButton bowlButton = new JoystickButton(joystick, BOWL);
-        JoystickButton cancelButton = new JoystickButton(joystick, CANCEL);
+        collectButton = new JoystickButton(joystick, COLLECT);
+        bowlButton = new JoystickButton(joystick, BOWL);
+        cancelButton = new JoystickButton(joystick, CANCEL);
 
         intakeInButton = new JoystickButton(joystick, INTAKE_IN);
         intakeOutButton = new JoystickButton(joystick, INTAKE_OUT);
@@ -136,6 +142,30 @@ public class OI {
                         0;
     }
 
+    public void sendButtons() {
+        SmartDashboard.putBoolean("Collect button", collectButton.get());
+        SmartDashboard.putBoolean("Bowl button", bowlButton.get());
+        SmartDashboard.putBoolean("Stop button", cancelButton.get());
+        SmartDashboard.putBoolean("Buttons 1", joystick.getRawButton(1));
+        SmartDashboard.putBoolean("Buttons 2", joystick.getRawButton(2));
+        SmartDashboard.putBoolean("Buttons 3", joystick.getRawButton(3));
+        SmartDashboard.putBoolean("Buttons 4", joystick.getRawButton(4));
+        SmartDashboard.putBoolean("Buttons 5", joystick.getRawButton(5));
+        SmartDashboard.putBoolean("Buttons 6", joystick.getRawButton(6));
+        SmartDashboard.putBoolean("Buttons 7", joystick.getRawButton(7));
+        SmartDashboard.putBoolean("Buttons 8", joystick.getRawButton(8));
+        SmartDashboard.putBoolean("Buttons 9", joystick.getRawButton(9));
+        SmartDashboard.putBoolean("Buttons 10", joystick.getRawButton(10));
+        SmartDashboard.putBoolean("Buttons 11", joystick.getRawButton(11));
+        SmartDashboard.putBoolean("Buttons 12", joystick.getRawButton(12));
+        SmartDashboard.putBoolean("Buttons 13", joystick.getRawButton(13));
+        SmartDashboard.putBoolean("Buttons 14", joystick.getRawButton(14));
+        SmartDashboard.putBoolean("Buttons 15", joystick.getRawButton(15));
+        SmartDashboard.putBoolean("Buttons 16", joystick.getRawButton(16));
+        SmartDashboard.putBoolean("Buttons 17", joystick.getRawButton(17));
+        SmartDashboard.putBoolean("Buttons 18", joystick.getRawButton(18));
+        SmartDashboard.putBoolean("Buttons 19", joystick.getRawButton(19));
+    }
 
     public void setCapturedLight(boolean value) {
         capturedLight.set(value);
