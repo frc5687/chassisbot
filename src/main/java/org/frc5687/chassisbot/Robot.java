@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
         // Commands need to be instantiated AFTER the subsystems.  Since the OI constructor instantiates several commands, we need it to be instantiated last.
         oi = new OI();
 
+        DriverStation.reportError("Starting cameraserver on " + RobotMap.Cameras.main, false);
         cameraServer = CameraServer.getInstance();
         cameraServer.setQuality(50);
         cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
