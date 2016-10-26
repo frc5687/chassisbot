@@ -73,6 +73,7 @@ public class Intake extends Subsystem {
         }
         SmartDashboard.putBoolean("BoulderCaptured", isCaptured());
 
+        oi.setCapturedLight(isCaptured());
     }
 
     /**
@@ -80,14 +81,14 @@ public class Intake extends Subsystem {
      * @param speed the desired speed value
      */
     public void setSpeed(double speed) {
-        if (speed < 0) {
+        if (speed == Constants.Intake.CAPTURE_SPEED) {
             DriverStation.reportError("Intake in", false);
-        } else if (speed > 0) {
+        } else if (speed == Constants.Intake.BOWL_SPEED) {
             DriverStation.reportError("Intake out", false);
         }
 
-        oi.setIntakeInLight(speed<0);
-        oi.setIntakeOutLight(speed>0);
+        oi.setIntakeInLight(speed == Constants.Intake.CAPTURE_SPEED);
+        oi.setIntakeOutLight(speed == Constants.Intake.BOWL_SPEED);
 
         intakeMotor.set(speed);
     }

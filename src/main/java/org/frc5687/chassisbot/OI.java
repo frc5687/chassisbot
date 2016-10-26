@@ -2,6 +2,9 @@ package org.frc5687.chassisbot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.frc5687.chassisbot.commands.BowlBoulder;
+import org.frc5687.chassisbot.commands.CancelIntake;
+import org.frc5687.chassisbot.commands.CollectBoulder;
 import org.frc5687.chassisbot.utils.Gamepad;
 import org.frc5687.chassisbot.utils.Helpers;
 import edu.wpi.first.wpilibj.Joystick;
@@ -83,13 +86,12 @@ public class OI {
         intakeInLight = new JoystickLight(joystick, INTAKE_IN_LIGHT);
         intakeOutLight = new JoystickLight(joystick, INTAKE_OUT_LIGHT);
 
-        //JoystickButton normalSpeedButton = new JoystickButton(joystick, DEFAULT_PRIME_SPEED);
-
         // Drive Train Commands
-        // Boulder Commands
 
-        //captureButton.toggleWhenPressed(new CaptureBoulder());
-        //bowlButton.whenPressed(new Bowl());
+        // Boulder Commands
+        collectButton.whenPressed(new CollectBoulder());
+        cancelButton.whenPressed(new CancelIntake());
+        bowlButton.whenPressed(new BowlBoulder());
 
     }
 
