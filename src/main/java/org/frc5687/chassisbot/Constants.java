@@ -56,7 +56,7 @@ public class Constants {
         public static final int DETECTION_THRESHOLD = 600;
         public static final int PRIMED_OPTIMAL = 1100; // Optimal position of boulder for Priming the Shooter Wheel
         public static final int PRIMED_TOLERANCE = 100; // Tolerance in either direction of boulder position for Priming
-        public static final int CAPTURED_OPTIMAL = 1400; // Optimal position of boulder for storing bolder and traversing defenses
+        public static final int CAPTURED_OPTIMAL = 1000; // Optimal position of boulder for storing bolder and traversing defenses
         public static final int CAPTURED_TOLERANCE = 100; // Tolerance in either direction of boulder position for carrying boulder
     }
 
@@ -64,7 +64,7 @@ public class Constants {
         /**
          * Speed to run the intake roller to capture the boulder until detected
          */
-        public static final double CAPTURE_SPEED = -1.0;
+        public static final double CAPTURE_SPEED = .5;
 
         /**
          * Speed to run the intake roller to prime the boulder
@@ -84,12 +84,12 @@ public class Constants {
         /**
          * Time it takes for a boulder to clear the intake roller when bowling (in milliseconds).
          */
-        public static final long BOWL_TIME = 3000;
+        public static final long BOWL_TIME = 1000;
 
         /**
          * Speed to run the intake roller when bowling.
          */
-        public static final double BOWL_SPEED = 1.0;
+        public static final double BOWL_SPEED = -1.0;
     }
 
     public class IntakeLifter {
