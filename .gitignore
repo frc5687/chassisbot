@@ -47,3 +47,4 @@ run/
 .gradle/
 gradle/.launch/
 !gradle/*/*.jar
+/chassisbot.iws
