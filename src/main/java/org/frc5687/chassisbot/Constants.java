@@ -43,7 +43,7 @@ public class Constants {
          *
          * NEVER SET ABOVE 1 OR BELOW 0
          */
-        public static final double SENSITIVITY_FACTOR = 0.5;
+        public static final double SENSITIVITY_FACTOR = .2;
     }
 
     public class Autonomous {
@@ -56,7 +56,7 @@ public class Constants {
         public static final int DETECTION_THRESHOLD = 600;
         public static final int PRIMED_OPTIMAL = 1100; // Optimal position of boulder for Priming the Shooter Wheel
         public static final int PRIMED_TOLERANCE = 100; // Tolerance in either direction of boulder position for Priming
-        public static final int CAPTURED_OPTIMAL = 1000; // Optimal position of boulder for storing bolder and traversing defenses
+        public static final int CAPTURED_OPTIMAL = 1500; // Optimal position of boulder for storing bolder and traversing defenses
         public static final int CAPTURED_TOLERANCE = 100; // Tolerance in either direction of boulder position for carrying boulder
     }
 
