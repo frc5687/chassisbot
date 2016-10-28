@@ -49,7 +49,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getLeftTicks() {
-        return leftEncoder.getRaw();
+        return leftEncoder.get();
     }
 
     public double getLeftRate() {
@@ -68,9 +68,7 @@ public class DriveTrain extends Subsystem {
         return rightEncoder.getDistance();
     }
 
-    public double getRightTicks() {
-        return rightEncoder.getRaw();
-    }
+    public double getRightTicks() { return rightEncoder.get(); }
 
     public double getRightRate() {
         return rightEncoder.getRate();
@@ -124,6 +122,13 @@ public class DriveTrain extends Subsystem {
         drive.tankDrive(leftSpeed, rightSpeed, false);
 
 
+    }
+
+    public void setSafeMode(boolean enabled) {
+        drive.setSafetyEnabled(enabled);
+    }
+
+    public void updateDashboard() {
         SmartDashboard.putNumber("drive/Right distance", getRightDistance());
         SmartDashboard.putNumber("drive/Left distance", getLeftDistance());
 
@@ -138,9 +143,5 @@ public class DriveTrain extends Subsystem {
 
         SmartDashboard.putNumber("drive/Right RPS" , getRightRPS());
         SmartDashboard.putNumber("drive/Left RPS" , getLeftRPS());
-    }
-
-    public void setSafeMode(boolean enabled) {
-        drive.setSafetyEnabled(enabled);
     }
 }
