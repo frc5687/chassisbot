@@ -114,11 +114,24 @@ public class Robot extends IterativeRobot {
 
 
     public void autonomousInit() {
-        autonomousCommand = (Command) autoChooser.getSelected();
+        autoInitUsingButtons();
         if (autonomousCommand!=null) {
             autonomousCommand.start();
         }
+    }
 
+    private void autoInitUsingChooser() {
+        autonomousCommand = (Command) autoChooser.getSelected();
+    }
+
+    private void autoInitUsingButtons() {
+        if (SmartDashboard.getBoolean("DB/Button 1", false)) {
+            autonomousCommand = new ReachDefense();
+        } else if (SmartDashboard.getBoolean("DB/Button 2", false)) {
+            autonomousCommand = new TraverseLowBar();
+        } else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
+            autonomousCommand = new TraverseLowBarAndBowl();
+        }
     }
 
     public void autonomousPeriodic() {

@@ -133,7 +133,7 @@ public class Constants {
         public class Defaults {
             public static final boolean REVERSED = false;
             public static final int SAMPLES_TO_AVERAGE = 20;
-            public static final int PULSES_PER_ROTATION = 1400;
+            public static final int PULSES_PER_ROTATION = 1440;
             public static final double WHEEL_DIAMETER = 6;
             public static final double INCHES_PER_ROTATION = Math.PI * WHEEL_DIAMETER;
             public static final double SCALAR_RATIO = 4;
