@@ -2,9 +2,15 @@ package org.frc5687.chassisbot;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.frc5687.chassisbot.commands.DoNothing;
+import org.frc5687.chassisbot.commands.ReachDefense;
+import org.frc5687.chassisbot.commands.TraverseLowBar;
+import org.frc5687.chassisbot.commands.TraverseLowBarAndBowl;
 import org.frc5687.chassisbot.subsystems.*;
 import org.frc5687.chassisbot.utils.*;
 
@@ -51,6 +57,9 @@ public class Robot extends IterativeRobot {
 
     private CameraServer cameraServer;
 
+    private SendableChooser autoChooser;
+
+    private Command autonomousCommand;
 
     public Robot() {
 
@@ -86,30 +95,46 @@ public class Robot extends IterativeRobot {
         cameraServer = CameraServer.getInstance();
         cameraServer.setQuality(50);
         cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
+
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Do Nothing", new DoNothing());
+        autoChooser.addObject("Reach Defense", new ReachDefense());
+        autoChooser.addObject("Traverse LowBar", new TraverseLowBar());
+        autoChooser.addObject("Traverse LowBar and Bowl", new TraverseLowBarAndBowl());
+        SmartDashboard.putData("Autonomous mode", autoChooser);
+
     }
 
     public void disabledInit() {
     }
 
     public void disabledPeriodic() {
+        updateDashboard();
     }
 
 
     public void autonomousInit() {
+        autonomousCommand = (Command) autoChooser.getSelected();
+        if (autonomousCommand!=null) {
+            autonomousCommand.start();
+        }
+
     }
 
     public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+        updateDashboard();
     }
 
     public void teleopInit() {
+        if (autonomousCommand != null) autonomousCommand.cancel();
         driveTrain.setSafeMode(true);
         imu.reset();
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        lights.updateDashboard();
-        intake.updateDashboard();
+        updateDashboard();
         oi.endRumble();
     }
 
@@ -117,6 +142,12 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
 
+    protected void updateDashboard() {
+        lights.updateDashboard();
+        intake.updateDashboard();
+        driveTrain.updateDashboard();
+        sendIMUData();
+    }
     protected void sendIMUData() {
         if (imu==null) {
             // If we can't find the imu, report that to the dashboard and return.

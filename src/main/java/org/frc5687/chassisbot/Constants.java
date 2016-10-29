@@ -50,6 +50,9 @@ public class Constants {
         public static final double MIN_AUTO_TRAVERSE_ANGLE = 7; // the minimum angle the robot will pitch when traversing a defense
         public static final double MAX_AUTO_TRAVERSE_SECONDS = 7; // the maximum time the robot should need to travers a defense in Autonomous,
 
+        public static final long INCHES_TO_CROSS = 20;
+        public static final double ROLL_THRESHOLD = 8.0;
+        public static final double TRAVERSE_SPEED = .5;
     }
 
     public class InfraRedConstants {
@@ -130,11 +133,11 @@ public class Constants {
         public class Defaults {
             public static final boolean REVERSED = false;
             public static final int SAMPLES_TO_AVERAGE = 20;
-            public static final int PULSES_PER_ROTATION = 2048;
-            public static final double WHEEL_DIAMETER = 13;
+            public static final int PULSES_PER_ROTATION = 1400;
+            public static final double WHEEL_DIAMETER = 6;
             public static final double INCHES_PER_ROTATION = Math.PI * WHEEL_DIAMETER;
-            public static final double SCALAR_RATIO = .45;
-            public static final double INCHES_PER_PULSE = INCHES_PER_ROTATION * SCALAR_RATIO / PULSES_PER_ROTATION ;
+            public static final double SCALAR_RATIO = 4;
+            public static final double INCHES_PER_PULSE = INCHES_PER_ROTATION*SCALAR_RATIO/ PULSES_PER_ROTATION ;
             public static final double MAX_PERIOD = 5;
         }
 
