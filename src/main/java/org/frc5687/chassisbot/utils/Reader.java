@@ -6,5 +6,5 @@ package org.frc5687.chassisbot.utils;
  */
 
 public class Reader {
-    public static final String gitInfo = "fix/riverrage2016 89dfb4f *";
+    public static final String gitInfo = "fix/riverrage2016 23c0032 *";
  }

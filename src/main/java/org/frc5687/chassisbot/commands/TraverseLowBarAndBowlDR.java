@@ -10,13 +10,13 @@ public class TraverseLowBarAndBowlDR extends CommandGroup {
 
         public TraverseLowBarAndBowlDR() {
 
-            addSequential(new AutoDrive(Constants.Autonomous.TRAVERSE_SPEED, 242.0f));
+            addSequential(new AutoDrive(Constants.Autonomous.TRAVERSE_SPEED, 270.0f));
 
             // Turn towards the tower
             addSequential(new AutoAlign(60f));
 
             // Run forward
-            addSequential(new AutoDrive(Constants.Autonomous.TRAVERSE_SPEED, 100.0f));
+            addSequential(new AutoDrive(-0.7, 100.0f));
 
             addSequential(new BowlBoulder());
         }

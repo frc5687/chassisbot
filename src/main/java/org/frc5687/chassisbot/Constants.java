@@ -52,8 +52,8 @@ public class Constants {
 
         public static final long INCHES_TO_CROSS = 20;
         public static final double ROLL_THRESHOLD = 8.0;
-        public static final double TRAVERSE_SPEED = -.5;
-        public static final double REACH_SPEED = -.25;
+        public static final double TRAVERSE_SPEED = -0.5;
+        public static final double REACH_SPEED = -0.25;
     }
 
     public class InfraRedConstants {
