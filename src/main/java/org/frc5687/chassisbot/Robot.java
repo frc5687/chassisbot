@@ -7,10 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.frc5687.chassisbot.commands.DoNothing;
-import org.frc5687.chassisbot.commands.ReachDefense;
-import org.frc5687.chassisbot.commands.TraverseLowBar;
-import org.frc5687.chassisbot.commands.TraverseLowBarAndBowl;
+import org.frc5687.chassisbot.commands.*;
 import org.frc5687.chassisbot.subsystems.*;
 import org.frc5687.chassisbot.utils.*;
 
@@ -130,7 +127,11 @@ public class Robot extends IterativeRobot {
         } else if (SmartDashboard.getBoolean("DB/Button 2", false)) {
             autonomousCommand = new TraverseLowBar();
         } else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
-            autonomousCommand = new TraverseLowBarAndBowl();
+            // autonomousCommand = new AutoDrive(-0.2, 72.0f);
+            // autonomousCommand = new AutoAlign(90.00);
+            autonomousCommand = new TraverseLowBarAndBowlDR();
+        } else if (SmartDashboard.getBoolean("DB/Button 0", false)) {
+            autonomousCommand = new AutoDrive(Constants.Autonomous.TRAVERSE_SPEED, 4000);
         }
     }
 

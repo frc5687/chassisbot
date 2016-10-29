@@ -61,6 +61,9 @@ public class OI {
     private JoystickLight intakeInLight;
     private JoystickLight intakeOutLight;
 
+    private JoystickButton leftAccel;
+    private JoystickButton rightAccel;
+
     private boolean rumbling = false;
     private long rumbleStopTime = 0;
 
@@ -73,6 +76,8 @@ public class OI {
         joystick = new Joystick(1);
 
         // Gamepad Buttons
+        leftAccel = new JoystickButton(gamepad, Gamepad.Buttons.LEFT_BUMPER.getNumber());
+        rightAccel = new JoystickButton(gamepad, Gamepad.Buttons.RIGHT_BUMPER.getNumber());
 
         // Joystick Buttons
         collectButton = new JoystickButton(joystick, COLLECT);
@@ -187,10 +192,10 @@ public class OI {
      * @return the adjusted control value from the gamepad
      */
     private double transformStickToSpeed(Gamepad.Axes stick) {
-        double result = gamepad.getRawAxis(stick);
+        boolean accel = leftAccel.get() || rightAccel.get();
+        double result =  gamepad.getRawAxis(stick);
         result = Helpers.applyDeadband(result, Constants.Deadbands.DRIVE_STICK);
-        result = Helpers.applySensitivityTransform(result);
+        result = Helpers.applySensitivityTransform(result, accel ? 1.0 : 0.7);
         return result;
     }
 }
-

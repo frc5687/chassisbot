@@ -16,7 +16,6 @@ import static org.frc5687.chassisbot.Robot.imu;
  * Created by Ben Bernard on 10/27/2016.
  */
 public class AutoDrive extends Command implements PIDOutput {
-    PIDController turnController = null;
 
     private long endTime = 0;
     private int timeToDrive = 0;
@@ -35,6 +34,7 @@ public class AutoDrive extends Command implements PIDOutput {
     private double targetAngle = 0;
 
     public AutoDrive(double speed) {
+        requires(driveTrain);
         this.speed = speed;
     }
 
@@ -72,13 +72,6 @@ public class AutoDrive extends Command implements PIDOutput {
             setDistance(inchesToDrive);
         }
         targetAngle = imu.getYaw();
-        turnController = new PIDController(kP, kI, kD, kF, imu, this);
-        turnController.setInputRange(-180f, 180f);
-        turnController.setOutputRange(-0.1, 0.1);
-        turnController.setAbsoluteTolerance(kToleranceDegrees);
-        turnController.setContinuous(true);
-        turnController.setSetpoint(targetAngle);
-        turnController.enable();
     }
 
     protected void setDistance(double inchesToDrive) {
@@ -90,28 +83,31 @@ public class AutoDrive extends Command implements PIDOutput {
     @Override
     protected void execute() {
         int directionFactor = driveByTime || (inchesToDrive>=0) ? 1 : -1;
-        driveTrain.tankDrive(directionFactor * speed + rotateToAngleRate, directionFactor * speed - rotateToAngleRate);
+        driveTrain.tankDrive(directionFactor * speed, directionFactor * speed);
     }
 
     @Override
     protected boolean isFinished() {
+        boolean result = true;
         if (driveByTime) {
             long now = (new Date()).getTime();
-            return now > endTime;
+            result = now > endTime;
         } else if (inchesToDrive<0){
             inchesDriven = driveTrain.getRightDistance() - inchesAtStart;
-            return inchesDriven <= inchesToDrive;
+            result = inchesDriven <= inchesToDrive;
         } else if (inchesToDrive>0) {
             inchesDriven = driveTrain.getRightDistance() - inchesAtStart;
-            return  inchesDriven >= inchesToDrive;
-        } else {
-            return true;
+            result = inchesDriven >= inchesToDrive;
         }
+
+        if (result) {
+            DriverStation.reportError("AutoDrive done.\n", false);
+        }
+        return result;
     }
 
     @Override
     protected void end() {
-        turnController.disable();
         DriverStation.reportError("AutoDrive done.\n", false);
         driveTrain.tankDrive(0,0);
 

@@ -41,7 +41,7 @@ public class AutoAlign extends Command implements PIDOutput {
         imu.setPIDSourceType(PIDSourceType.kRate);
         turnController = new PIDController(kP, kI, kD, kF, imu, this);
         turnController.setInputRange(-180.0f,  180.0f);
-        turnController.setOutputRange(-0.6, 0.6);
+        turnController.setOutputRange(-0.2, 0.2);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
         turnController.setSetpoint(targetAngle);
@@ -83,7 +83,7 @@ public class AutoAlign extends Command implements PIDOutput {
             SmartDashboard.putNumber("AutoAlign/PID Output", output);
             DriverStation.reportError("AutoAlign/PID Output " + output, false);
             rotateToAngleRate = output;
-            driveTrain.tankDrive(rotateToAngleRate, -1 * rotateToAngleRate, true);
+            driveTrain.tankDrive(-1 * rotateToAngleRate, rotateToAngleRate, true);
         }
     }
 

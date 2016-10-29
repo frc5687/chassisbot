@@ -52,7 +52,8 @@ public class Constants {
 
         public static final long INCHES_TO_CROSS = 20;
         public static final double ROLL_THRESHOLD = 8.0;
-        public static final double TRAVERSE_SPEED = .5;
+        public static final double TRAVERSE_SPEED = -.5;
+        public static final double REACH_SPEED = -.25;
     }
 
     public class InfraRedConstants {
@@ -136,7 +137,7 @@ public class Constants {
             public static final int PULSES_PER_ROTATION = 1440;
             public static final double WHEEL_DIAMETER = 6;
             public static final double INCHES_PER_ROTATION = Math.PI * WHEEL_DIAMETER;
-            public static final double SCALAR_RATIO = 4;
+            public static final double SCALAR_RATIO = 8;
             public static final double INCHES_PER_PULSE = INCHES_PER_ROTATION*SCALAR_RATIO/ PULSES_PER_ROTATION ;
             public static final double MAX_PERIOD = 5;
         }
