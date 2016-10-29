@@ -32,17 +32,17 @@ public class Helpers{
      * @param input the raw input value from a joystick
      * @return the adjusted control value
      */
-    public static double applySensitivityTransform(double input) {
+    public static double applySensitivityTransform(double input, double range) {
         // See http://www.chiefdelphi.com/forums/showthread.php?p=921992
 
         // The transform can only work on values between -1 and 1.
-        if (input>1) { return 1; }
-        if (input <-1) { return -1; }
+        if (input>1) { return range; }
+        if (input <-1) { return -1 * range; }
 
         // The sensitivity factor MUST be between 0 and 1!
-        double factor = Math.max(Math.min(Constants.Calibration.SENSITIVITY_FACTOR, 1),0);
+        double factor = Math.max(Math.min(Constants.Calibration.SENSITIVITY_FACTOR, range),0);
 
-        return factor*input*input*input + (1-factor)*input;
+        return factor*input*input*input + (range-factor)*input;
     }
 
     /**
