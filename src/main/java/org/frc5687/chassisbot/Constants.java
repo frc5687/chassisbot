@@ -136,8 +136,8 @@ public class Constants {
             public static final int PULSES_PER_ROTATION = 1400;
             public static final double WHEEL_DIAMETER = 6;
             public static final double INCHES_PER_ROTATION = Math.PI * WHEEL_DIAMETER;
-            public static final double SCALAR_RATIO = 1;
-            public static final double INCHES_PER_PULSE = INCHES_PER_ROTATION / PULSES_PER_ROTATION ;
+            public static final double SCALAR_RATIO = 4;
+            public static final double INCHES_PER_PULSE = INCHES_PER_ROTATION*SCALAR_RATIO/ PULSES_PER_ROTATION ;
             public static final double MAX_PERIOD = 5;
         }
 
