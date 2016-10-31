@@ -89,10 +89,14 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         DriverStation.reportError("Starting cameraserver on " + RobotMap.Cameras.main, false);
-        cameraServer = CameraServer.getInstance();
-        cameraServer.setQuality(50);
-        cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
-
+        try {
+            cameraServer = CameraServer.getInstance();
+            cameraServer.setQuality(50);
+            cameraServer.setSize(1);
+            cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
+        } catch (Exception e) {
+            cameraServer = null;
+        }
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Do Nothing", new DoNothing());
         autoChooser.addObject("Reach Defense", new ReachDefense());
