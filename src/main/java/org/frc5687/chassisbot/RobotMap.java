@@ -49,6 +49,6 @@ public class RobotMap {
      * Camera ports
      */
     public static class Cameras {
-        public static final String main = "cam0";
+        public static final int main = 0;
     }
 }

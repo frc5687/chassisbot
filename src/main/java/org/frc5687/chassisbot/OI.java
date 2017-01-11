@@ -9,7 +9,7 @@ import org.frc5687.chassisbot.utils.Gamepad;
 import org.frc5687.chassisbot.utils.Helpers;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import org.frc5687.chassisbot.utils.JoystickLight;
 
 /**
