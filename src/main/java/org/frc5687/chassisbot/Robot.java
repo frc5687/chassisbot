@@ -52,6 +52,9 @@ public class Robot extends IterativeRobot {
      */
     public static Lights lights;
 
+    public static Pneumatics pneumatics;
+
+
     private CameraServer cameraServer;
 
     private SendableChooser autoChooser;

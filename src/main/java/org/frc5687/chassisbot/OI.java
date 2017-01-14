@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc5687.chassisbot.commands.BowlBoulder;
 import org.frc5687.chassisbot.commands.CancelIntake;
 import org.frc5687.chassisbot.commands.CollectBoulder;
+import org.frc5687.chassisbot.commands.ExpandPiston;
+import org.frc5687.chassisbot.commands.RetractPiston;
 import org.frc5687.chassisbot.utils.Gamepad;
 import org.frc5687.chassisbot.utils.Helpers;
 import edu.wpi.first.wpilibj.Joystick;
@@ -33,6 +35,9 @@ public class OI {
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
     public static final int INTAKE_OUT_LIGHT = 3;
+
+    public static final int EXPAND_PISTON = 5;
+    public static final int RETRACT_PISTON = 6;
 
 
     // Intake Lifter Buttons
@@ -64,6 +69,9 @@ public class OI {
     private JoystickButton leftAccel;
     private JoystickButton rightAccel;
 
+    private JoystickButton expandPistonButton;
+    private JoystickButton retractPistonButton;
+
     private boolean rumbling = false;
     private long rumbleStopTime = 0;
 
@@ -87,9 +95,14 @@ public class OI {
         intakeInButton = new JoystickButton(joystick, INTAKE_IN);
         intakeOutButton = new JoystickButton(joystick, INTAKE_OUT);
 
+        expandPistonButton = new JoystickButton(gamepad, EXPAND_PISTON);
+        retractPistonButton = new JoystickButton(gamepad, RETRACT_PISTON);
+
         capturedLight = new JoystickLight(joystick, CAPTURE_LIGHT);
         intakeInLight = new JoystickLight(joystick, INTAKE_IN_LIGHT);
         intakeOutLight = new JoystickLight(joystick, INTAKE_OUT_LIGHT);
+
+
 
         // Drive Train Commands
 
@@ -98,6 +111,8 @@ public class OI {
         cancelButton.whenPressed(new CancelIntake());
         bowlButton.whenPressed(new BowlBoulder());
 
+        expandPistonButton.whenPressed(new ExpandPiston());
+        retractPistonButton.whenPressed(new RetractPiston());
     }
 
     public void rumble (float strength, long length) {
