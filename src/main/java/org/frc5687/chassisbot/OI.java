@@ -28,8 +28,8 @@ public class OI {
     public static final int BOWL = 2; // Yellow
     public static final int CANCEL = 4; // Red
 
-    public static final int INTAKE_OUT = 5; // Yellow
-    public static final int INTAKE_IN = 6; // Red
+    public static final int INTAKE_OUT = 0; // Yellow
+    public static final int INTAKE_IN = 0; // Red
 
 
     public static final int CAPTURE_LIGHT = 2;
