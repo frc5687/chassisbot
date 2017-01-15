@@ -13,7 +13,7 @@ apply plugin: "idea"
 frc {
   team = "5687"
   robotClass = 'org.frc5687.chassisbot.Robot'       //The class for the main Robot Class
-  rioIP="10.56.87.95"
+  rioIP="10.56.87.21"
 }
 
 wpi {
@@ -73,7 +73,7 @@ task access << {
 
 task gitLog << {
   description = 'Logs git branch and version to log file when deploy'
-  def logFile = new File('src/main/java/org/usfirst/frc/team5687/robot/utils/Reader.java')
+  def logFile = new File('src/main/java/org/frc5687/chassisbot/utils/Reader.java')
 
   def cmd = 'git diff HEAD --shortstat'
   def mod = cmd.execute().text.trim()
