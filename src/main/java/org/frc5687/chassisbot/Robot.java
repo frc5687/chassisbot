@@ -2,6 +2,7 @@ package org.frc5687.chassisbot;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.cscore.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -53,6 +54,7 @@ public class Robot extends IterativeRobot {
     public static Lights lights;
 
     private CameraServer cameraServer;
+    private UsbCamera camera;
 
     private SendableChooser autoChooser;
 
@@ -91,9 +93,8 @@ public class Robot extends IterativeRobot {
         DriverStation.reportError("Starting cameraserver on " + RobotMap.Cameras.main, false);
         try {
             cameraServer = CameraServer.getInstance();
-            cameraServer.setQuality(50);
-            cameraServer.setSize(1);
-            cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
+            camera = cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
+            camera.setResolution(640, 480);
         } catch (Exception e) {
             cameraServer = null;
         }
