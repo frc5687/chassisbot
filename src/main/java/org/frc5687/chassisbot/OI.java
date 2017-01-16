@@ -28,10 +28,6 @@ public class OI {
     public static final int BOWL = 2; // Yellow
     public static final int CANCEL = 4; // Red
 
-    public static final int INTAKE_OUT = 0; // Yellow
-    public static final int INTAKE_IN = 0; // Red
-
-
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
     public static final int INTAKE_OUT_LIGHT = 3;
@@ -53,10 +49,7 @@ public class OI {
     // Camera switch
     public static int RESET_CAMERA = Gamepad.Buttons.A.getNumber();
 
-    private JoystickButton overrideButton;
 
-    private JoystickButton intakeInButton;
-    private JoystickButton intakeOutButton;
 
     private JoystickButton collectButton;
     private JoystickButton bowlButton;
@@ -91,9 +84,6 @@ public class OI {
         collectButton = new JoystickButton(joystick, COLLECT);
         bowlButton = new JoystickButton(joystick, BOWL);
         cancelButton = new JoystickButton(joystick, CANCEL);
-
-        intakeInButton = new JoystickButton(joystick, INTAKE_IN);
-        intakeOutButton = new JoystickButton(joystick, INTAKE_OUT);
 
         expandPistonButton = new JoystickButton(gamepad, EXPAND_PISTON);
         retractPistonButton = new JoystickButton(gamepad, RETRACT_PISTON);
@@ -134,9 +124,6 @@ public class OI {
         }
     }
 
-    public boolean getOverride() {
-        return overrideButton.get();
-    }
     /**
      * Gets the desired speed for the left side of the drive
      * @return the control value for the right drive motors
@@ -151,17 +138,6 @@ public class OI {
      */
     public double getRightSpeed(){
         return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
-    }
-
-    /**
-     * Gets the desired speed for the intake
-     * @return the control value for the intake motor
-     */
-    public double getIntakeSpeed() {
-        // Joystick's y-axis is set to control intake speed
-        return intakeInButton.get() ? Constants.Intake.CAPTURE_SPEED :
-                intakeOutButton.get() ? Constants.Intake.BOWL_SPEED :
-                        0;
     }
 
     public void sendButtons() {

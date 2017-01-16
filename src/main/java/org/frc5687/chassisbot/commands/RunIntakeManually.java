@@ -33,7 +33,6 @@ public class RunIntakeManually extends Command {
      * @see edu.wpi.first.wpilibj.command.Command#execute()
      */
     protected void execute() {
-        intake.setSpeed(oi.getIntakeSpeed());
         // oi.sendButtons();
     }
 

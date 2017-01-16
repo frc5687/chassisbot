@@ -2,15 +2,12 @@ package org.frc5687.chassisbot.commands;
 
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.frc5687.chassisbot.Robot;
-import org.frc5687.chassisbot.subsystems.Pneumatics;
+import static org.frc5687.chassisbot.Robot.pneumatics;
 
 /**
  * Command for expanding piston of double solenoid
  */
 public class ExpandPiston extends Command{
-
-    Pneumatics doubleSolenoid  = Robot.pneumatics;
 
     /**
      * Sets up the command
@@ -18,7 +15,7 @@ public class ExpandPiston extends Command{
      */
     @Override
     protected void initialize() {
-        requires(doubleSolenoid);
+        requires(pneumatics);
     }
 
     /**
@@ -27,7 +24,7 @@ public class ExpandPiston extends Command{
      */
     @Override
     protected void execute() {
-        doubleSolenoid.expandPiston();
+        pneumatics.expandPiston();
     }
 
     /**
@@ -37,7 +34,7 @@ public class ExpandPiston extends Command{
      */
     @Override
     protected boolean isFinished() {
-        return true;
+        return pneumatics.isExpanded();
     }
 
     /**

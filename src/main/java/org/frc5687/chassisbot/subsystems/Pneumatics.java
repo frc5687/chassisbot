@@ -2,6 +2,7 @@ package org.frc5687.chassisbot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Subsystem for pneumatics
@@ -15,7 +16,7 @@ public class Pneumatics extends Subsystem {
      */
     public Pneumatics() {
         // Sets the double solenoid to channels 0 and 1 of PCM
-        doubleSolenoid = new DoubleSolenoid(0, 1);
+        doubleSolenoid = new DoubleSolenoid(1, 2);
     }
 
     /**
@@ -35,8 +36,15 @@ public class Pneumatics extends Subsystem {
     /**
      * Disables the double solenoid
      */
-    public void disablePiston() {
-        doubleSolenoid.set(DoubleSolenoid.Value.kOff);
+    public void disablePiston() { doubleSolenoid.set(DoubleSolenoid.Value.kOff); }
+
+
+    public boolean isExpanded() {
+        return doubleSolenoid.get() == DoubleSolenoid.Value.kForward;
+    }
+
+    public boolean isRetracted() {
+        return doubleSolenoid.get() == DoubleSolenoid.Value.kReverse;
     }
 
     /**
@@ -45,4 +53,9 @@ public class Pneumatics extends Subsystem {
     @Override
     protected void initDefaultCommand() {
     }
+
+    public void updateDashboard() {
+        SmartDashboard.putBoolean("pneumatics/Forward", doubleSolenoid.get() == DoubleSolenoid.Value.kForward );
+        SmartDashboard.putBoolean("pneumatics/Reverse", doubleSolenoid.get() == DoubleSolenoid.Value.kReverse );
+   }
 }

@@ -30,6 +30,7 @@ public class Helpers{
     /**
      * Applies a transform to the input to provide better sensitivity at low speeds.
      * @param input the raw input value from a joystick
+     * @param range the range over which to scale the input
      * @return the adjusted control value
      */
     public static double applySensitivityTransform(double input, double range) {

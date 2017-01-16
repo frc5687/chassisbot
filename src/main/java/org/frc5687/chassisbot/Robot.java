@@ -70,6 +70,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         robot = this;
         driveTrain = new DriveTrain();
+        pneumatics = new Pneumatics();
         intake = new Intake();
         lights = new Lights();
 
@@ -165,9 +166,8 @@ public class Robot extends IterativeRobot {
     }
 
     protected void updateDashboard() {
-        lights.updateDashboard();
-        intake.updateDashboard();
         driveTrain.updateDashboard();
+        pneumatics.updateDashboard();
         sendIMUData();
     }
     protected void sendIMUData() {

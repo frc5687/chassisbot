@@ -2,14 +2,13 @@ package org.frc5687.chassisbot.commands;
 
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.frc5687.chassisbot.Robot;
-import org.frc5687.chassisbot.subsystems.Pneumatics;
+import static org.frc5687.chassisbot.Robot.pneumatics;
+
 /**
  * Command for retracting piston of double solenoid
  */
 public class RetractPiston extends Command{
 
-    Pneumatics doubleSolenoid = Robot.pneumatics;
 
     /**
      * Sets up the command
@@ -17,7 +16,7 @@ public class RetractPiston extends Command{
      */
     @Override
     protected void initialize() {
-        requires(doubleSolenoid);
+        requires(pneumatics);
     }
 
     /**
@@ -26,7 +25,7 @@ public class RetractPiston extends Command{
      */
     @Override
     protected void execute() {
-        doubleSolenoid.retractPiston();
+        pneumatics.retractPiston();
     }
 
     /**
@@ -36,7 +35,7 @@ public class RetractPiston extends Command{
      */
     @Override
     protected boolean isFinished() {
-        return true;
+        return pneumatics.isRetracted();
     }
 
     /**
