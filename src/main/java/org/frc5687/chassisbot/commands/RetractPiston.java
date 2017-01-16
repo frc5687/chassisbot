@@ -11,13 +11,17 @@ import static org.frc5687.chassisbot.Robot.pneumatics;
 public class RetractPiston extends Command{
 
 
+    public RetractPiston() {
+        requires(pneumatics);
+    }
+
     /**
      * Sets up the command
      * Called just before this Command runs the first time
      */
     @Override
     protected void initialize() {
-        requires(pneumatics);
+
     }
 
     /**
