@@ -6,5 +6,5 @@ package org.frc5687.chassisbot.utils;
  */
 
 public class Reader {
-    public static final String gitInfo = "prototype-pneumatics 545e84c *";
+    public static final String gitInfo = "prototype-pneumatics 3e75c06 *";
  }

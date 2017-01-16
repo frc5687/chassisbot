@@ -24,16 +24,16 @@ public class OI {
 
 
     // Boulder Buttons
-    public static final int COLLECT = 5;  // Green button
-    public static final int BOWL = 6; // Yellow
+    public static final int COLLECT = 2;  // Green button
+    public static final int BOWL = 1; // Yellow
     public static final int CANCEL = 4; // Red
 
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
     public static final int INTAKE_OUT_LIGHT = 3;
 
-    public static final int EXPAND_PISTON = 1;
-    public static final int RETRACT_PISTON = 2;
+    public static final int EXPAND_PISTON = 6;
+    public static final int RETRACT_PISTON = 5;
 
 
     // Intake Lifter Buttons
