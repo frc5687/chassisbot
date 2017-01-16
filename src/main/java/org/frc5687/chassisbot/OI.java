@@ -24,16 +24,20 @@ public class OI {
 
 
     // Boulder Buttons
-    public static final int COLLECT = 2;  // Green button
-    public static final int BOWL = 1; // Yellow
     public static final int CANCEL = 4; // Red
 
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
     public static final int INTAKE_OUT_LIGHT = 3;
 
-    public static final int EXPAND_PISTON = 6;
-    public static final int RETRACT_PISTON = 5;
+
+    public static final int GEAR_IN = 5;  // Green button
+    public static final int GEAR_OUT = 6; // Yellow
+
+
+
+    public static final int EXPAND_PISTON = 2;
+    public static final int RETRACT_PISTON = 1;
 
 
     // Intake Lifter Buttons
@@ -51,8 +55,8 @@ public class OI {
 
 
 
-    private JoystickButton collectButton;
-    private JoystickButton bowlButton;
+    private JoystickButton gearInButton;
+    private JoystickButton gearOutButton;
     private JoystickButton cancelButton;
 
     private JoystickLight capturedLight;
@@ -81,12 +85,12 @@ public class OI {
         rightAccel = new JoystickButton(gamepad, Gamepad.Buttons.RIGHT_BUMPER.getNumber());
 
         // Joystick Buttons
-        collectButton = new JoystickButton(joystick, COLLECT);
-        bowlButton = new JoystickButton(joystick, BOWL);
+        gearInButton = new JoystickButton(joystick, GEAR_IN);
+        gearOutButton = new JoystickButton(joystick, GEAR_OUT);
         cancelButton = new JoystickButton(joystick, CANCEL);
 
-        expandPistonButton = new JoystickButton(gamepad, EXPAND_PISTON);
-        retractPistonButton = new JoystickButton(gamepad, RETRACT_PISTON);
+        expandPistonButton = new JoystickButton(joystick, EXPAND_PISTON);
+        retractPistonButton = new JoystickButton(joystick, RETRACT_PISTON);
 
         capturedLight = new JoystickLight(joystick, CAPTURE_LIGHT);
         intakeInLight = new JoystickLight(joystick, INTAKE_IN_LIGHT);
@@ -97,9 +101,7 @@ public class OI {
         // Drive Train Commands
 
         // Boulder Commands
-        collectButton.whenPressed(new CollectBoulder());
         cancelButton.whenPressed(new CancelIntake());
-        bowlButton.whenPressed(new BowlBoulder());
 
         expandPistonButton.whenPressed(new ExpandPiston());
         retractPistonButton.whenPressed(new RetractPiston());
@@ -140,9 +142,15 @@ public class OI {
         return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
     }
 
-    public void UpdateDashboard() {
-        SmartDashboard.putBoolean("Collect button", collectButton.get());
-        SmartDashboard.putBoolean("Bowl button", bowlButton.get());
+    public boolean isGearInPressed() {
+        return gearInButton.get();
+    }
+
+    public boolean isGearOutPressed() {
+        return gearOutButton.get();
+    }
+
+    public void UpdateDashboard() {/*
         SmartDashboard.putBoolean("Stop button", cancelButton.get());
         SmartDashboard.putBoolean("Buttons 1", joystick.getRawButton(1));
         SmartDashboard.putBoolean("Buttons 2", joystick.getRawButton(2));
@@ -163,6 +171,7 @@ public class OI {
         SmartDashboard.putBoolean("Buttons 17", joystick.getRawButton(17));
         SmartDashboard.putBoolean("Buttons 18", joystick.getRawButton(18));
         SmartDashboard.putBoolean("Buttons 19", joystick.getRawButton(19));
+        */
     }
 
     public void setCapturedLight(boolean value) {

@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
 
     public static Pneumatics pneumatics;
 
+    public static GearHandler gearHandler;
 
     private CameraServer cameraServer;
     private UsbCamera camera;
@@ -71,6 +72,7 @@ public class Robot extends IterativeRobot {
         robot = this;
         driveTrain = new DriveTrain();
         pneumatics = new Pneumatics();
+        gearHandler = new GearHandler();
         intake = new Intake();
         lights = new Lights();
 
@@ -98,8 +100,9 @@ public class Robot extends IterativeRobot {
         try {
             cameraServer = CameraServer.getInstance();
             camera = cameraServer.startAutomaticCapture(RobotMap.Cameras.main);
-            camera.setResolution(640, 480);
+            // camera.setResolution(640, 480);
         } catch (Exception e) {
+            DriverStation.reportError("Camera error: " +e.getMessage(), false);
             cameraServer = null;
         }
         autoChooser = new SendableChooser();
@@ -152,6 +155,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         driveTrain.setSafeMode(true);
+
         imu.reset();
     }
 
@@ -168,7 +172,7 @@ public class Robot extends IterativeRobot {
     protected void updateDashboard() {
         driveTrain.updateDashboard();
         pneumatics.updateDashboard();
-        oi.UpdateDashboard();
+        // oi.UpdateDashboard();
         sendIMUData();
     }
     protected void sendIMUData() {

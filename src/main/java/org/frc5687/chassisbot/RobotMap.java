@@ -38,6 +38,11 @@ public class RobotMap {
         public static final int INFRARED_SENSOR = 3;
     }
 
+    public static class GearHandler {
+        public static final int MOTOR_PORT = 4;
+        public static final int HOME_SENSOR_PORT = 4;
+        public static final int EXTENSION_SENSOR_PORT = 5;
+    }
     /**
      * Lights ports
      */
@@ -53,8 +58,8 @@ public class RobotMap {
     }
 
     public static class Pneumatics {
-        public static final int expandPort = 0;
-        public static final int retractPort = 1;
+        public static final int expandPort = 1;
+        public static final int retractPort = 0;
     }
 
 }
