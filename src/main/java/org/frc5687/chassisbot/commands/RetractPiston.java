@@ -1,6 +1,7 @@
 package org.frc5687.chassisbot.commands;
 
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import static org.frc5687.chassisbot.Robot.pneumatics;
 
@@ -25,6 +26,7 @@ public class RetractPiston extends Command{
      */
     @Override
     protected void execute() {
+        DriverStation.reportError("Starting retract command", false);
         pneumatics.retractPiston();
     }
 

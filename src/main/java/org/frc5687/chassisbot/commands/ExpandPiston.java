@@ -1,6 +1,7 @@
 package org.frc5687.chassisbot.commands;
 
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import static org.frc5687.chassisbot.Robot.pneumatics;
 
@@ -24,6 +25,7 @@ public class ExpandPiston extends Command{
      */
     @Override
     protected void execute() {
+        DriverStation.reportError("Starting expand command", false);
         pneumatics.expandPiston();
     }
 

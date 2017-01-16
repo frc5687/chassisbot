@@ -24,16 +24,16 @@ public class OI {
 
 
     // Boulder Buttons
-    public static final int COLLECT = 1;  // Green button
-    public static final int BOWL = 2; // Yellow
+    public static final int COLLECT = 5;  // Green button
+    public static final int BOWL = 6; // Yellow
     public static final int CANCEL = 4; // Red
 
     public static final int CAPTURE_LIGHT = 2;
     public static final int INTAKE_IN_LIGHT = 1;
     public static final int INTAKE_OUT_LIGHT = 3;
 
-    public static final int EXPAND_PISTON = 5;
-    public static final int RETRACT_PISTON = 6;
+    public static final int EXPAND_PISTON = 1;
+    public static final int RETRACT_PISTON = 2;
 
 
     // Intake Lifter Buttons
@@ -140,7 +140,7 @@ public class OI {
         return transformStickToSpeed(Gamepad.Axes.RIGHT_Y);
     }
 
-    public void sendButtons() {
+    public void UpdateDashboard() {
         SmartDashboard.putBoolean("Collect button", collectButton.get());
         SmartDashboard.putBoolean("Bowl button", bowlButton.get());
         SmartDashboard.putBoolean("Stop button", cancelButton.get());

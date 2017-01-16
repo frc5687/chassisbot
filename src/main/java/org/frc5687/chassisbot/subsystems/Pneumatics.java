@@ -1,8 +1,10 @@
 package org.frc5687.chassisbot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.frc5687.chassisbot.RobotMap;
 
 /**
  * Subsystem for pneumatics
@@ -16,13 +18,14 @@ public class Pneumatics extends Subsystem {
      */
     public Pneumatics() {
         // Sets the double solenoid to channels 0 and 1 of PCM
-        doubleSolenoid = new DoubleSolenoid(1, 2);
+        doubleSolenoid = new DoubleSolenoid(RobotMap.Pneumatics.expandPort, RobotMap.Pneumatics.retractPort);
     }
 
     /**
      * Expands the cylinder of double solenoid
      */
     public void expandPiston() {
+        DriverStation.reportError("Extending piston", false);
         doubleSolenoid.set(DoubleSolenoid.Value.kForward);
     }
 
@@ -30,13 +33,17 @@ public class Pneumatics extends Subsystem {
      * Retracts the cylinder of double solenoid
      */
     public void retractPiston() {
+        DriverStation.reportError("Retracting piston", false);
         doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
     /**
      * Disables the double solenoid
      */
-    public void disablePiston() { doubleSolenoid.set(DoubleSolenoid.Value.kOff); }
+    public void disablePiston() {
+        DriverStation.reportError("Disabling piston", false);
+        doubleSolenoid.set(DoubleSolenoid.Value.kOff);
+    }
 
 
     public boolean isExpanded() {

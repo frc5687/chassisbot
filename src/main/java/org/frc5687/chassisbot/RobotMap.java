@@ -51,4 +51,10 @@ public class RobotMap {
     public static class Cameras {
         public static final int main = 0;
     }
+
+    public static class Pneumatics {
+        public static final int expandPort = 0;
+        public static final int retractPort = 1;
+    }
+
 }

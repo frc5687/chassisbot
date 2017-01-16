@@ -168,6 +168,7 @@ public class Robot extends IterativeRobot {
     protected void updateDashboard() {
         driveTrain.updateDashboard();
         pneumatics.updateDashboard();
+        oi.UpdateDashboard();
         sendIMUData();
     }
     protected void sendIMUData() {
